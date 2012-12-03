@@ -1,0 +1,134 @@
+////////////////////////////////////////////////////////////////////////////////
+Copyright (c) 2012, THE BOARD OF TRUSTEES OF THE LELAND STANFORD JUNIOR UNIVERSITY
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+   Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+   Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+   Neither the name of the STANFORD UNIVERSITY nor the names of its contributors
+   may be used to endorse or promote products derived from this software without
+   specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.
+////////////////////////////////////////////////////////////////////////////////
+
+= Service Capability Contract: GET, get
+:toc:
+
+== Document Version
+1.0
+
+== Intent
+The intent of this document is to provide a contract for consumer reference on use of this capability
+
+== Name
+GET, get
+
+== Description
+This capability provides functionality to fetch resources from the document root of this service. This is a STROMA compliant capability.
+
+== State Management
+This service capability is stateless
+
+== Owner
+TBD
+
+== Interface
+
+=== Interface Classification
+* STROMA
+* synchronous
+* HTTP
+
+=== Expected Input
+
+.Special URI rules
+
+* The URI of the service request is utilized as the target resource location unless the *uri* parameter is specified. If brokered, only the *uri* parameter will be utilized.
+
+.Parameters
+
+* *uri* [optional when called directly] If specified, this will be the path (relative to the document root of this service) where the resource will be read from. This field is mandatory if brokered. The value of this field can also be an HTTP URL, flagged by the _http:_ prefix.
+
+.Meta Data
+
+N/A
+
+[NOTE]
+The following are trivial examples to use as a reference. Please see STROMA/X-STROMA specification for details.
+
+[NOTE]
+The "action" parameter is explicitly added here for clarity. The Cyclades Engine will automatically set the action to the HTTP request method if nothing is specified _and_ this is a direct HTTP request to the capability. An alternative and equivelent request format would be _http://localhost:8080/cyclades/restfs/dir-one/dir-two/sample.txt_
+
+==== XML request variations
+----
+http://localhost:8080/cyclades/restfs/dir-one/dir-two/sample.txt?action=GET
+----
+
+==== JSON request variations
+----
+http://localhost:8080/cyclades/restfs/dir-one/dir-two/sample.txt?action=GET
+----
+
+=== Expected Output
+
+[NOTE]
+If the "raw-response" STROMA parameter is utilized, the HTTP response code of this request will be automatically set to the status-code field on error
+
+[NOTE]
+The CONTENT-TYPE response header will have the value of  _application/octet-stream_ for now.
+
+==== XML
+----
+sample payload
+----
+
+==== JSON
+----
+sample payload
+----
+
+== Additional Orchestration Capability Details
+
+* If this capability is utilized in a chained orchestration and chains forward, the resource retrieved will be stored in the MapChannel as a byte array (byte[]) under the key _binary_
+* This capability will return an error if an attempt is made to utilize it in a composed orchestration. It only makes sense to use this capability in a chained orchestration.
+
+== Functional Requirements
+
+* The capability will enable users to fetch resources from this service's document root. This capability is STROMA compliant, however cannot be utilized for a composed orchestration.
+
+== Non Functional Requirements
+
+* SLA/QoS
+ - N/A
+
+* Security
+ - N/A
+
+== Test Results
+
+* link:load_test_results.html[Load Test Results]
+* link:extended_duration_test_results.html[Extended Duration Test Results]
+* link:functional_test_results.html[Functional Test Results]
+
+== Modifications To This Document
+
+[options="header"]
+|=========================================================
+|Author			|Date		|Version	|Details
+|Tom Angelopoulos	|4/3/2012	|1.0		|Document Creation
+|=========================================================

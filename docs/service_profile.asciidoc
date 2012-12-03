@@ -1,0 +1,96 @@
+////////////////////////////////////////////////////////////////////////////////
+Copyright (c) 2012, THE BOARD OF TRUSTEES OF THE LELAND STANFORD JUNIOR UNIVERSITY
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+   Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+   Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+   Neither the name of the STANFORD UNIVERSITY nor the names of its contributors
+   may be used to endorse or promote products derived from this software without
+   specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.
+////////////////////////////////////////////////////////////////////////////////
+
+= Service Profile: restfs
+:toc:
+
+== Document Version
+1.0
+
+== Intent
+The intent of this document is to provide an overview and meta data for the discovery of this service and its capabilities. This document should be comprehensible to all stakeholders. This document may also be indexed and used to aid in service discovery. An access route can be utilized via tha Service Registry home page.
+
+== Name
+restfs
+
+== Purpose
+
+=== Short
+This service will assist in the realization of an updatable file server like service.
+
+=== Detailed
+This service will assist in the realization of an updatable file server like service. The data maintained by this service may be fronted by a file server for better get performance, caching and compression.
+
+== Service Model 
+Utility
+
+== Tags
+File Server, POST, GET, DELETE, PUT, REST
+
+== Owner
+TBD
+
+== Status
+Functional first cut
+
+== Deployment Overview
+
+=== Service Handle
+restfs
+
+=== Protocol/Interface Classification
+* synchronous
+* STROMA compliant (Transport Protocol Agnostic) unless otherwise noted
+* HTTP adapter is included with default installation
+
+=== Dependencies On Other Services
+<any services that this service depends on get listed here>
+
+=== Deployment Location
+* services-conf-*
+
+== Service Capabilities
+
+.Capabilities/Actions
+[options="header"]
+|=========================================================
+|Action			|Purpose								|Tags						|Status
+|whoami			|Simple handler for debugging, echoes parameters			|echo, whoami, parameters, headers		|Complete
+|POST, PUT		|Add a resource, Web App like behaviour, not fully STROMA compliant	|POST, PUT, REST, HTTP				|Complete
+|add			|Add a resource, STROMA compliant variant to above			|add, POST, PUT, STROMA, HTTP			|Complete
+|GET, get		|Fetch a resource							|GET, fetch, HTTP				|Complete
+|DELETE, delete		|Remove a resource							|DELETE, remove, rm, rmdir			|Complete
+|=========================================================
+
+== Modifications To This Document
+
+[options="header"]
+|=========================================================
+|Author			|Date		|Version	|Details
+|Tom Angelopoulos	|4/3/2012	|1.0		|Document Creation
+|=========================================================
