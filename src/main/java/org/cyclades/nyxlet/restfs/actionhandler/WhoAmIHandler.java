@@ -44,6 +44,7 @@ public class WhoAmIHandler extends ActionHandler {
         super(parentNyxlet);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void handle (NyxletSession nyxletSession, Map<String, List<String>> baseParameters, STROMAResponseWriter stromaResponseWriter) throws Exception {
         final String eLabel = "WhoAmIHandler.handle: ";
