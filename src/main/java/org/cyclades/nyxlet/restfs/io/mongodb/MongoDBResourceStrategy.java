@@ -105,6 +105,7 @@ public class MongoDBResourceStrategy extends ResourceStrategy {
         return serverList;
     }
 
+    @SuppressWarnings("unchecked")
     private MongoOptions getMongoOptions (JSONObject jsonObject) throws Exception {
         return new MongoOptionsBuilder().build((jsonObject.has(MONGODB_OPTIONS)) ? MapHelper.mapFromMeta(jsonObject.getJSONObject(MONGODB_OPTIONS)) : new HashMap<String, String>());
     }
